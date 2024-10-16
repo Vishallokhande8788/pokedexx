@@ -42,9 +42,8 @@ inputEl.addEventListener("input", (e) => {
     renderPokemons([
       {
         name: "Not found",
-        image:
-          "https://img.freepik.com/premium-vector/adorable-cartoon-panda-astronaut-soaring-through-space-rocket_1263357-29898.jpg",
-        description: " matches not found",
+        image:"https://ih1.redbubble.net/image.309196451.6526/st,small,507x507-pad,600x600,f8f8f8.u12.jpg",
+        description: " please search valid pokemon  your search is not found.",
         link: "https://pokemon.com",
       },
     ]);
