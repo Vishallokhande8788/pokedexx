@@ -1,21 +1,19 @@
 // console.log("connected")
 import { shuffle } from "fast-shuffle";
-import data from "./data.json";
-// console.log(data)
+import Fuse from "fuse.js";
 
+import data from "./data.json";
 import PokemonCard from "./components/PokemonCard";
 
+// Dom selection
 const inputEl = document.querySelector("input");
-console.log(inputEl);
 // for(let object of data){
 //     console.log(object.name)
 // }
 const pokemonRow = document.querySelector("[data-pokemon-row]");
 
 //iterate over pokemon data
-
 // render
-
 function renderPokemons(list) {
   // empty the previous content
 
@@ -27,7 +25,7 @@ function renderPokemons(list) {
   //   pokemonRow.appendChild(pokemon);
   // }
 
-  //  or 
+  //  or
 
   list.forEach((pokemonObj) => {
     const { name, image, description, link } = pokemonObj;
@@ -36,14 +34,20 @@ function renderPokemons(list) {
   });
 }
 
-// filter functionality
+// filtering
+function renderFilteredPokemons(input) {
+  // const filteredPokemons = data.filter((obj) =>
+  //   obj.name.toLowerCase().includes(input)
+  // );
 
-inputEl.addEventListener("input", (e) => {
-  const currentInput = e.target.value.toLowerCase().trim();
+  if(input===""){ // isse hum (!input) ase bhi likh sakte hai
+    return renderPokemons(data);
+  }
+  const fuse = new Fuse(data, {
+    keys: ["name"],
+  });
 
-  const filteredPokemons = data.filter((obj) =>
-    obj.name.toLowerCase().includes(currentInput)
-  );
+  const filteredPokemons = fuse.search(input).map((obj) => obj.item);
 
   if (!filteredPokemons.length) {
     renderPokemons([
@@ -59,6 +63,11 @@ inputEl.addEventListener("input", (e) => {
   }
 
   renderPokemons(filteredPokemons);
+}
+
+inputEl.addEventListener("input", (e) => {
+  const currentInput = e.target.value.toLowerCase().trim();
+  renderFilteredPokemons(currentInput);
 });
 // for (let obj of data) {
 //   const { name, image, description, link} = obj; //destructured
@@ -73,6 +82,7 @@ inputEl.addEventListener("input", (e) => {
 //   pokemonRow.appendChild(PokemonCard(name, image, description, link));
 // }
 
+// add keyboard functionality
 document.addEventListener("keyup", (e) => {
   if (e.key === "/") {
     // console.log(`slas hwas pressed`);
