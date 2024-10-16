@@ -1,5 +1,5 @@
 // console.log("connected")
-
+import { shuffle } from "fast-shuffle";
 import data from "./data.json";
 // console.log(data)
 
@@ -21,13 +21,20 @@ function renderPokemons(list) {
 
   pokemonRow.innerHTML = "";
 
-  for (let obj of list) {
-    const { name, image, description, link } = obj;
+  // for (let obj of list) {
+  //   const { name, image, description, link } = obj;
+  //   const pokemon = PokemonCard(name, image, description, link);
+  //   pokemonRow.appendChild(pokemon);
+  // }
+
+  //  or 
+
+  list.forEach((pokemonObj) => {
+    const { name, image, description, link } = pokemonObj;
     const pokemon = PokemonCard(name, image, description, link);
     pokemonRow.appendChild(pokemon);
-  }
+  });
 }
-renderPokemons(data);
 
 // filter functionality
 
@@ -38,12 +45,13 @@ inputEl.addEventListener("input", (e) => {
     obj.name.toLowerCase().includes(currentInput)
   );
 
-  if (filteredPokemons.length === 0) {
+  if (!filteredPokemons.length) {
     renderPokemons([
       {
         name: "Not found",
-        image:"https://ih1.redbubble.net/image.309196451.6526/st,small,507x507-pad,600x600,f8f8f8.u12.jpg",
-        description: " please search valid pokemon  your search is not found.",
+        image:
+          "https://ih1.redbubble.net/image.309196451.6526/st,small,507x507-pad,600x600,f8f8f8.u12.jpg",
+        description: "Please search valid pokemon  your search is not found .",
         link: "https://pokemon.com",
       },
     ]);
@@ -71,3 +79,6 @@ document.addEventListener("keyup", (e) => {
     inputEl.focus();
   }
 });
+
+// initial rendering
+renderPokemons(shuffle(data));
