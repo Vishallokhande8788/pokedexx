@@ -40,12 +40,18 @@ function renderFilteredPokemons(input) {
   //   obj.name.toLowerCase().includes(input)
   // );
 
-  if(input===""){ // isse hum (!input) ase bhi likh sakte hai
+  if (input === "") {
+    // isse hum (!input) ase bhi likh sakte hai
     return renderPokemons(data);
   }
-  const fuse = new Fuse(data, {
-    keys: ["name"],
-  });
+
+  const options = {
+    keys: ["name", "abilities"],
+  };
+
+  const fuse = new Fuse(data, options);
+
+  console.log(fuse.search(input));
 
   const filteredPokemons = fuse.search(input).map((obj) => obj.item);
 
@@ -56,7 +62,7 @@ function renderFilteredPokemons(input) {
         image:
           "https://ih1.redbubble.net/image.309196451.6526/st,small,507x507-pad,600x600,f8f8f8.u12.jpg",
         description: "Please search valid pokemon  your search is not found .",
-        link: "https://pokemon.com",
+        link: "",
       },
     ]);
     return;
