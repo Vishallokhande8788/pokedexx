@@ -47,10 +47,10 @@ function renderFilteredPokemons(input) {
 
   const options = {
     keys: ["name", "abilities"],
+    threshold: 0.5,
   };
 
   const fuse = new Fuse(data, options);
-
   console.log(fuse.search(input));
 
   const filteredPokemons = fuse.search(input).map((obj) => obj.item);

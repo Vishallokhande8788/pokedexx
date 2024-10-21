@@ -7,9 +7,9 @@ body {
 .card {
   height: 100%;
   transition: 1s all ease;
+}
 
-  &:hover {
-    background-color: rgba(128, 0, 128, 0.245);
-    transform: scale(1.05);
-  }
+.card:hover {
+  background-color: rgba(128, 0, 128, 0.245);
+  transform: scale(1.05);
 }
