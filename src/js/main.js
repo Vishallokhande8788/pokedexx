@@ -33,7 +33,7 @@ function renderPokemons(list) {
     const pokemon = PokemonCard(name, image, description, link);
     fragment.appendChild(pokemon);
   });
-  // add fragment 
+  // add fragment
   pokemonRow.appendChild(fragment);
 }
 
@@ -73,10 +73,14 @@ function renderFilteredPokemons(input) {
 
   renderPokemons(filteredPokemons);
 }
-
+let debounceTimer;
 inputEl.addEventListener("input", (e) => {
-  const currentInput = e.target.value.toLowerCase().trim();
-  renderFilteredPokemons(currentInput);
+  clearTimeout(debounceTimer);
+
+  debounceTimer = setTimeout(() => {
+    const currentInput = e.target.value.toLowerCase().trim();
+    renderFilteredPokemons(currentInput);
+  }, 300);
 });
 // for (let obj of data) {
 //   const { name, image, description, link} = obj; //destructured
