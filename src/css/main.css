@@ -1,15 +1,32 @@
-@import url("https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap"); */
 
 body {
   font-family: "Teachers", sans-serif;
+  background-color: rgb(253, 118, 69);
+  /* background: linear-gradient(to bottom right, orangered, #08ebc1); */
+
 }
 
 .card {
   height: 100%;
   transition: 1s all ease;
+  border-radius: 5%;
+  box-shadow: 4px 4px 6px;
 }
 
 .card:hover {
-  background-color: rgba(128, 0, 128, 0.245);
+  /* background-color: rgb(141, 233, 141); */
   transform: scale(1.05);
+  background: linear-gradient(to bottom right, #0cfd50, #f011bc);
+}
+
+
+.btn-warning:hover {
+  background-color: rgb(215, 78, 215);
+}
+
+.container-fluid {
+  background-color: rgb(124, 235, 233);
+  /* background: linear-gradient(to bottom right, orangered, #08ebc1); */
+
 }
