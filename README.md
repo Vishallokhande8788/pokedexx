@@ -18,6 +18,19 @@ A Pokédex for Pokémon GO.
 2. Run `npm install` to install dependencies
 3. Run `npm start` to start the server
 
+## vite setup
+
+1. Install vite `npm create vite@latest `
+2. Run `npm install` to install dependencies
+3. Run `npm run dev` to start the server    
+4. Run `npm run build` to build the app
+
+## dependencies
+
+- fast-shuffle
+- fuse.js
+- vite
+
 ## Usage
 
 To search for a Pokémon, enter the name,or type in the search bar.
